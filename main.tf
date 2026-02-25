@@ -26,3 +26,12 @@ module "network" {
     project_name        = var.project_name
     env                 = terraform.workspace
 }
+
+module "storage" {
+  source = "./modules/storage"
+
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  project_name        = var.project_name
+  env                 = terraform.workspace
+}
