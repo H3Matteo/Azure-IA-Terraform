@@ -35,3 +35,12 @@ module "storage" {
   project_name        = var.project_name
   env                 = terraform.workspace
 }
+
+module "cognitive_service" {
+  source = "./modules/cognitive_service"
+
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  project_name        = var.project_name
+  env                 = terraform.workspace
+}
