@@ -12,6 +12,10 @@ provider "azurerm" {
         features {}
     subscription_id = var.subscription_id
 }
+resource "azurerm_resource_group" "rg" {
+    name     = "rg-${var.project_name}-${terraform.workspace}"
+    location = var.location
+}
 data "azurerm_resource_group" "rg" {
   name = "rg-ia-tfstate"
 }
@@ -42,4 +46,40 @@ module "security" {
 
   storage_account_id     = var.storage_account_id
   cognitive_account_id   = var.cognitive_account_id
+}
+
+module "monitoring" {
+  source = "./modules/monitoring"
+
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  project_name        = var.project_name
+  env                 = terraform.workspace
+}
+
+module "cognitive_service" {
+  source = "./modules/cognitive_service"
+
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  project_name        = var.project_name
+  env                 = terraform.workspace
+}
+
+module "storage" {
+  source = "./modules/storage"
+
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  project_name        = var.project_name
+  env                 = terraform.workspace
+}
+
+module "network" {
+    source = "./modules/network"
+
+    resource_group_name = azurerm_resource_group.rg.name
+    location            = azurerm_resource_group.rg.location
+    project_name        = var.project_name
+    env                 = terraform.workspace
 }
