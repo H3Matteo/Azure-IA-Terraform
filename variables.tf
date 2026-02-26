@@ -14,3 +14,12 @@ variable "project_name" {
   type        = string
   default     = "ocr"
 }
+
+variable "storage_account_name" {}
+variable "storage_account_key" {}
+variable "storage_account_url" {}
+variable "storage_account_id" {}
+variable "vision_endpoint" {}
+variable "cognitive_account_id" {}
+variable "app_insights_key" {}
+variable "tenant_id" {}
