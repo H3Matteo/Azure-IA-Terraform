@@ -8,3 +8,6 @@ output "primary_access_key" {
   value       = azurerm_cognitive_account.vision.primary_access_key
   sensitive   = true
 }
+output "cognitive_account_id" {
+  value = azurerm_cognitive_account.vision.id
+}

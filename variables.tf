@@ -6,13 +6,13 @@ variable "subscription_id" {
 variable "location" {
   description = "La région Azure pour toutes les ressources"
   type        = string
-  default     = "italynorth"
+  default     = "francecentral"
 }
 
 variable "project_name" {
   description = "Le nom du projet"
   type        = string
-  default     = "ocr"
+  default     = "ocrdb"
 }
 
 variable "storage_account_name" {}

@@ -7,3 +7,4 @@ variable "function_principal_id" { type = string }
 
 variable "storage_account_id" { type = string }
 variable "cognitive_account_id" { type = string }
+variable "app_insights_key" { type = string }
