@@ -44,3 +44,12 @@ module "cognitive_service" {
   project_name        = var.project_name
   env                 = terraform.workspace
 }
+
+module "monitoring" {
+  source = "./modules/monitoring"
+
+  resource_group_name = azurerm_resource_group.rg.name
+  location            = azurerm_resource_group.rg.location
+  project_name        = var.project_name
+  env                 = terraform.workspace
+}
