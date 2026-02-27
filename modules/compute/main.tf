@@ -19,12 +19,14 @@ resource "azurerm_linux_function_app" "function_app" {
   }
 
   site_config {
-    application_insights_key = var.app_insights_key
+  application_stack {
+    python_version = "3.10"
   }
+}
 
   app_settings = {
-    FUNCTIONS_WORKER_RUNTIME = "python"
-    VISION_ENDPOINT          = var.vision_endpoint
-    STORAGE_ACCOUNT_URL      = var.storage_account_url
+    FUNCTIONS_WORKER_RUNTIME  = "python"
+    FUNCTIONS_EXTENSION_VERSION = "~4"
+    AzureWebJobsStorage = "DefaultEndpointsProtocol=https;AccountName=${var.storage_account_name};AccountKey=${var.storage_account_key};EndpointSuffix=core.windows.net"
   }
 }

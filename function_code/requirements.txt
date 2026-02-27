@@ -1,4 +1,3 @@
 azure-functions
-azure-identity
+requests
 azure-storage-blob
-azure-ai-vision-imageanalysis
